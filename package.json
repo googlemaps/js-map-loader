@@ -1,0 +1,28 @@
+{
+  "name": "map-loader",
+  "version": "1.0.0",
+  "description": "Automatic initialization and loading of the Maps JS API base map into the DOM",
+  "main": "dist/map-loader.umd.js",
+  "module": "dist/map-loader.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "format": "sort-package-json && prettier *.json *.js src/* examples/* --write",
+    "lint": "eslint src/*",
+    "prepare": "rollup -c",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/googlemaps/v3-utility-library.git"
+  },
+  "author": "Alex Muramoto",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/googlemaps/v3-utility-library/issues"
+  },
+  "homepage": "https://github.com/googlemaps/v3-utility-library#readme",
+  "dependencies": {
+    "@googlemaps/loader": "0.0.7",
+    "@types/googlemaps": "^3.39.3"
+  }
+}
