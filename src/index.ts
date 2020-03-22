@@ -34,23 +34,22 @@ export interface MapsJSAPIOptions {
 
 export class GoogleMap {
 
-    constructor() {
+    constructor() {                    
     }
 
-    async initMap(settings: MapLoaderOptions) {
-        const loader:Loader = new Loader({
-            apiKey: settings.apiKey,
-            version: settings.apiOptions.version,
-            libraries: settings.apiOptions.libraries
-          });
-        // Get the div to render the map into
+    async initMap(options: MapLoaderOptions): Promise<google.maps.Map<Element>> {        
         try {
+            const loader: Loader = new Loader({
+                apiKey: options.apiKey,
+                version: options.apiOptions.version,
+                libraries: options.apiOptions.libraries
+              });
             // Load the Maps JS API
             await loader.load();
             // Get the div to load the map into
-            const map_div:Element = document.getElementById(settings.mapDiv);
+            const map_div:Element = document.getElementById(options.mapDiv);
             // Initialize the map
-            return await new google.maps.Map(map_div, settings.mapOptions);
+            return await new google.maps.Map(map_div, options.mapOptions);
         } catch(e) {
             console.log(e);
         }
