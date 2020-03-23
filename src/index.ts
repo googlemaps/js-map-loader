@@ -17,10 +17,11 @@ import { Loader } from '@googlemaps/loader';
  
 
 export interface MapLoaderOptions {
-    apiKey: string,
-    mapDiv: string,
+    apiKey: string,    
+    divId: string,
     mapOptions: google.maps.MapOptions,
-    apiOptions: MapsJSAPIOptions
+    apiOptions: MapsJSAPIOptions,
+    append?: boolean
 }
 
 export interface MapsJSAPIOptions {
@@ -47,8 +48,16 @@ export class GoogleMap {
             // Load the Maps JS API
             await loader.load();
             // Get the div to load the map into
-            const map_div:Element = document.getElementById(options.mapDiv);
+            let map_div:Element = document.getElementById(options.divId);
+            if (options.append) {
+                let append_div_id:string = 'google_map';
+                let append_div:Element = document.createElement('div');
+                append_div.setAttribute('id', append_div_id);
+                map_div.appendChild(append_div);
+                map_div = append_div;
+            }
             // Initialize the map
+            console.log(map_div)
             return await new google.maps.Map(map_div, options.mapOptions);
         } catch(e) {
             console.log(e);
