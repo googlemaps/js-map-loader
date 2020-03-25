@@ -1,6 +1,5 @@
 import { GoogleMap } from 'map-loader';
 
-
 /*
  * Set your API key here.
  * For more information on generating API keys,
