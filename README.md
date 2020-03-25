@@ -74,7 +74,8 @@ If you're using TypeScript, the map loader exports interfaces for `MapLoaderOpti
 
 ### MapLoaderOptions
 
-|| Property || Type || Description ||
+| Property | Type | Description |
+| -------- | ---- | ----------- |
 | apiKey | string | Your API key. For information on generating an API key, see [How to generate and restrict API keys for Google Maps Platform](https://youtu.be/2_HZObVbe-g). |
 | divId | string | The ID of the div where you want the map initialized or appended. |
 | mapOptions | google.maps.MapOptions | Settings for how the map should appear. For a complete list of map options, see [google.maps.MapOptions](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/googlemaps/index.d.ts#L479) |
