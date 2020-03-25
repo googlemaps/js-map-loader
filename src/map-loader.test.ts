@@ -19,7 +19,7 @@
 
 import {GoogleMap} from "./map-loader";
 
-const GOOGLE_MAPS_API_KEY = "AIzaSyB-mDULVATQb80PwVzBngDRrQqXQo_6mck";
+const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
 const mapOptions = {
   center: {
     lat: 47.649196,
