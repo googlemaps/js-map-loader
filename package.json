@@ -1,6 +1,6 @@
 {
   "name": "map-loader",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Automatic initialization and loading of the Maps JS API base map into the DOM",
   "main": "dist/map-loader.umd.js",
   "module": "dist/map-loader.esm.js",
