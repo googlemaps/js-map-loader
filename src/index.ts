@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-export {GoogleMap, MapLoaderOptions, MapsJSAPIOptions} from "./map-loader";
+export {GoogleMap, MapsJSAPIOptions} from "./map-loader";
