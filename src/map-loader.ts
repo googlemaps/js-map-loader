@@ -20,7 +20,7 @@ export interface MapLoaderOptions {
   apiKey: string,
   divId: string,
   mapOptions: google.maps.MapOptions,
-  apiOptions: MapsJSAPIOptions,
+  apiOptions?: MapsJSAPIOptions,
   append?: boolean
 }
 
@@ -54,6 +54,9 @@ export class GoogleMap {
   }
 
   private async loadJsApi(options: MapLoaderOptions): Promise<void> {
+    if (!options.apiOptions) {
+      options.apiOptions = {};
+    }
     const loader_options: LoaderOptions =
       Object.assign(options.apiOptions, {apiKey: options.apiKey});
 

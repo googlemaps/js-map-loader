@@ -70,6 +70,17 @@ test("initMap initializes appends instance of google.maps.Map", () => {
     });
 });
 
+test("initMap initializes instance of google.maps.Map when apiOptions is null", () => {
+  const no_apiOptions = options;
+  delete no_apiOptions.apiOptions;
+  map
+    .initMap(no_apiOptions)
+    .then((map: google.maps.Map) => {
+      map.addListener('tilesloaded', tileload_callback);
+      expect(tileload_callback).toBeCalled();
+    });
+});
+
 test("initMap fails when invalid div id is provided", () => {
   const invalid_options: MapLoaderOptions = options;
   invalid_options.divId = 'invalid';
