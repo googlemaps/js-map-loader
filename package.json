@@ -1,5 +1,5 @@
 {
-  "name": "map-loader",
+  "name": "@googlemaps/map-loader",
   "version": "0.1.0",
   "description": "Automatic initialization and loading of the Maps JS API base map into the DOM",
   "main": "dist/map-loader.umd.js",
