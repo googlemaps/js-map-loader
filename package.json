@@ -31,6 +31,7 @@
     "@types/googlemaps": "^3.39.3",
     "@types/jest": "^25.1.4",
     "babel-jest": "^25.1.0",
+    "rollup": "^2.2.0",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
     "webpack-devserver": "0.0.6"
