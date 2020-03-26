@@ -84,8 +84,12 @@ If you're using TypeScript, the map loader exports interfaces for `MapLoaderOpti
 
 ### MapsJSAPIOptions
 
-|| Property || Type || Description ||
-
+| Property | Type  | Description |
+| -------- | ----- | ----------- |
+| version | string | *Optional.* Defaults to `weekly`. Version of the Maps JS API to load. For more information on supported values, see [Release channels and version numbers](https://developers.google.com/maps/documentation/javascript/versions#release-channels-and-version-numbers). |
+| libraries | Array<string> | *Optional.* Additional Maps JS API libraries to load. Supported values are `drawing`, `geometry`, `places`, `visualization`. |
+| language | string | *Optional.* Defaults to `en`. The language code of the language to localize the map to. For more information on supported values, see [supported languages](https://developers.google.com/maps/faq#languagesupport). |
+| region | string | *Optional.* Defaults to `us`. Sets the Unicode region subtag identifier of the region to localize the map to. For more information on supported values, see [Region localization](https://developers.google.com/maps/documentation/javascript/localization#Region). |
 
 ## Support
 
