@@ -11,7 +11,7 @@ jobs:
         token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
     - uses: actions/setup-node@v1
     - run: npm ci
-    - run: npm run test:all
+    - run: npm run test
       env:
         GOOGLE_MAPS_API_KEY: ${{ secrets.SYNCED_GOOGLE_MAPS_API_KEY_SERVICES }}
         GH_TOKEN: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
