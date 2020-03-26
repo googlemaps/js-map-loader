@@ -39,6 +39,8 @@ const options: MapLoaderOptions = {
   apiOptions: apiOptions
 };
 
+const map: GoogleMap = new GoogleMap();
+
 function tileload_callback(): void {
   console.log('tiles loaded');
 }
@@ -49,7 +51,6 @@ beforeEach(() => {
 });
 
 test("initMap initializes instance of google.maps.Map", () => {
-  const map: GoogleMap = new GoogleMap();
   map
     .initMap(options)
     .then((map: google.maps.Map) => {
@@ -61,7 +62,6 @@ test("initMap initializes instance of google.maps.Map", () => {
 test("initMap initializes appends instance of google.maps.Map", () => {
   const append_options: MapLoaderOptions = options;
   append_options.append = true;
-  const map: GoogleMap = new GoogleMap();
   map
     .initMap(options)
     .then((map: google.maps.Map) => {
@@ -73,7 +73,17 @@ test("initMap initializes appends instance of google.maps.Map", () => {
 test("initMap fails when invalid div id is provided", () => {
   const invalid_options: MapLoaderOptions = options;
   invalid_options.divId = 'invalid';
-  const map: GoogleMap = new GoogleMap();
+  map
+    .initMap(options)
+    .then((map: google.maps.Map) => {
+      map.addListener('tilesloaded', tileload_callback);
+      expect(tileload_callback).not.toBeCalled();
+    });
+});
+
+test("initMap fails when invalid API key is provided", () => {
+  const invalid_options: MapLoaderOptions = options;
+  invalid_options.apiKey = 'invalid';
   map
     .initMap(options)
     .then((map: google.maps.Map) => {
