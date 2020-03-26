@@ -69,3 +69,15 @@ test("initMap initializes appends instance of google.maps.Map", () => {
       expect(tileload_callback).toBeCalled();
     });
 });
+
+test("initMap fails when invalid div id is provided", () => {
+  const invalid_options: MapLoaderOptions = options;
+  invalid_options.divId = 'invalid';
+  const map: GoogleMap = new GoogleMap();
+  map
+    .initMap(options)
+    .then((map: google.maps.Map) => {
+      map.addListener('tilesloaded', tileload_callback);
+      expect(tileload_callback).not.toBeCalled();
+    });
+});
