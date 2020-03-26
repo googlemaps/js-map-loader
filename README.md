@@ -79,7 +79,7 @@ If you're using TypeScript, the map loader exports interfaces for `MapLoaderOpti
 | apiKey | string | Your API key. For information on generating an API key, see [How to generate and restrict API keys for Google Maps Platform](https://youtu.be/2_HZObVbe-g). |
 | divId | string | The ID of the div where you want the map initialized or appended. |
 | mapOptions | [google.maps.MapOptions](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/googlemaps/index.d.ts#L479) | Settings for how the map should appear. For a complete list of map options, see [google.maps.MapOptions](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/googlemaps/index.d.ts#L479). |
-| apiOptions | [MapsJSAPIOptions]](#mapsjsapioptions) | Setting for loading the Maps JavaScriptAPI. For a complete list of API options, see [MapsJSAPIOptions](#mapsjsapioptions). |
+| apiOptions | [MapsJSAPIOptions](#mapsjsapioptions) | Setting for loading the Maps JavaScriptAPI. For a complete list of API options, see [MapsJSAPIOptions](#mapsjsapioptions). |
 | append | boolean | *Optional.* Defaults to false. Sets whether to initialize the map in or append to `divId`. |
 
 ### MapsJSAPIOptions
