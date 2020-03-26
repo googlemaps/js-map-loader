@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/googlemaps/v3-utility-library#readme",
   "dependencies": {
-    "@googlemaps/loader": "0.0.8"
+    "@googlemaps/loader": "^0.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
