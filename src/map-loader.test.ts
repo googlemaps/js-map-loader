@@ -75,9 +75,8 @@ test("initMap fails when invalid div id is provided", () => {
   invalid_options.divId = 'invalid';
   map
     .initMap(options)
-    .then((map: google.maps.Map) => {
-      map.addListener('tilesloaded', tileload_callback);
-      expect(tileload_callback).not.toBeCalled();
+    .catch((e) => {
+      expect(e).not.toBeNull;
     });
 });
 
@@ -86,8 +85,7 @@ test("initMap fails when invalid API key is provided", () => {
   invalid_options.apiKey = 'invalid';
   map
     .initMap(options)
-    .then((map: google.maps.Map) => {
-      map.addListener('tilesloaded', tileload_callback);
-      expect(tileload_callback).not.toBeCalled();
+    .catch((e) => {
+      expect(e).not.toBeNull;
     });
 });
