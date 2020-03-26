@@ -18,28 +18,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import {GoogleMap} from "./map-loader";
+import {MapLoaderOptions, MapsJSAPIOptions} from "../dist/map-loader";
 
-const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
-const mapOptions = {
+const GOOGLE_MAPS_API_KEY: string = process.env.GOOGLE_MAPS_API_KEY;
+const mapOptions: google.maps.MapOptions = {
   center: {
     lat: 47.649196,
     lng: -122.350384
   },
   zoom: 12
 };
-const apiOptions = {
-  apiKey: GOOGLE_MAPS_API_KEY,
+const apiOptions: MapsJSAPIOptions = {
   version: 'weekly',
   libraries: ['places']
 };
-const options = {
+const options: MapLoaderOptions = {
   apiKey: GOOGLE_MAPS_API_KEY,
   divId: 'map',
   mapOptions: mapOptions,
   apiOptions: apiOptions
 };
 
-function tileload_callback() {
+function tileload_callback(): void {
   console.log('tiles loaded');
 }
 
@@ -49,22 +49,22 @@ beforeEach(() => {
 });
 
 test("initMap initializes instance of google.maps.Map", () => {
-  const map = new GoogleMap();
+  const map: GoogleMap = new GoogleMap();
   map
     .initMap(options)
-    .then((map) => {
+    .then((map: google.maps.Map) => {
       map.addListener('tilesloaded', tileload_callback);
       expect(tileload_callback).toBeCalled();
     });
 });
 
 test("initMap initializes appends instance of google.maps.Map", () => {
-  const append_options = options;
+  const append_options: MapLoaderOptions = options;
   append_options.append = true;
-  const map = new GoogleMap();
+  const map: GoogleMap = new GoogleMap();
   map
     .initMap(options)
-    .then((map) => {
+    .then((map: google.maps.Map) => {
       map.addListener('tilesloaded', tileload_callback);
       expect(tileload_callback).toBeCalled();
     });
