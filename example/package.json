@@ -8,6 +8,10 @@
   },
   "author": "Alex Muramoto",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "registry": "https://wombat-dressing-room.appspot.com",
+    "access": "public"
+  },
   "dependencies": {
     "map-loader": "@googlemaps/map-loader",
     "webpack": "^4.42.0",
