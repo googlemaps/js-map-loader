@@ -78,8 +78,8 @@ If you're using TypeScript, the map loader exports interfaces for `MapLoaderOpti
 | -------- | ---- | ----------- |
 | apiKey | string | Your API key. For information on generating an API key, see [How to generate and restrict API keys for Google Maps Platform](https://youtu.be/2_HZObVbe-g). |
 | divId | string | The ID of the div where you want the map initialized or appended. |
-| mapOptions | google.maps.MapOptions | Settings for how the map should appear. For a complete list of map options, see [google.maps.MapOptions](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/googlemaps/index.d.ts#L479) |
-| apiOptions | MapsJSAPIOptions | Setting for loading the Maps JavaScriptAPI. For a complete list of API options, see [MapsJSAPIOptions] |
+| mapOptions | [google.maps.MapOptions](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/googlemaps/index.d.ts#L479) | Settings for how the map should appear. For a complete list of map options, see [google.maps.MapOptions](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/googlemaps/index.d.ts#L479). |
+| apiOptions | [MapsJSAPIOptions]](#mapsjsapioptions) | Setting for loading the Maps JavaScriptAPI. For a complete list of API options, see [MapsJSAPIOptions](#mapsjsapioptions). |
 | append | boolean | *Optional.* Defaults to false. Sets whether to initialize the map in or append to `divId`. |
 
 ### MapsJSAPIOptions
@@ -99,5 +99,5 @@ the library that we want you to build real production applications on it.
 If you find a bug, or have a feature suggestion, please [log an issue][issues]. If you'd like to
 contribute, please read [How to Contribute][contrib].
 
-[issues]: https://github.com/googlemaps/js-map-loader
-[contrib]: https://github.com/googlemaps/js-map-loader/blob/master/CONTRIB.md
+[issues]: https://github.com/googlemaps/js-map-loader/issues
+[contrib]: https://github.com/googlemaps/js-map-loader/blob/master/CONTRIBUTING.md
