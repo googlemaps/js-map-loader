@@ -1,5 +1,6 @@
 Map Loader for Google Maps Platform JavaScript API v3
 ==================================
+![Test](https://github.com/googlemaps/js-map-loader/workflows/Test/badge.svg)
 
 ## Description
 Automatically loads a Google map into your website with a few lines of JavaScript or TypeScript. You provide the ID of the div where you want the map initialized or appended to, your settings for what the map looks like, and optionally your settings for loading the Maps JS API, and this module handles the rest.
