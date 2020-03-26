@@ -6,8 +6,18 @@
   "scripts": {
     "start": "webpack-dev-server --progress --hot --open"
   },
-  "author": "Alex Muramoto",
+  "author": "Google Inc.",
+  "contributors": [
+    {
+      "name": "Alex Muramoto",
+      "email": "asdfhjkl@google.com"
+    }
+  ],
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/googlemaps/js-map-loader.git"
+  },
   "publishConfig": {
     "registry": "https://wombat-dressing-room.appspot.com",
     "access": "public"
