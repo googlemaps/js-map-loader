@@ -17,6 +17,10 @@
   },
   "author": "Alex Muramoto",
   "license": "Apache-2.0",
+  "keywords": [
+    "google",
+    "maps"
+  ],
   "bugs": {
     "url": "https://github.com/googlemaps/v3-utility-library/issues"
   },
@@ -35,6 +39,7 @@
     "rollup": "^2.2.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^5.3.0",
     "rollup-plugin-typescript2": "^0.26.0",
     "typescript": "^3.8.3",

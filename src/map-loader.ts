@@ -31,18 +31,14 @@ export class GoogleMap {
   }
 
   async initMap(options: MapLoaderOptions): Promise<google.maps.Map<Element>> {
-    try {
-      await this.loadJsApi(options);
-      // Get the div to load the map into
-      let map_div: Element = document.getElementById(options.divId);
-      if (options.append) {
-        map_div = this.appendMapDiv(map_div);
-      }
-      // Initialize the map
-      return await new google.maps.Map(map_div, options.mapOptions);
-    } catch (e) {
-      console.log(e);
+    await this.loadJsApi(options);
+    // Get the div to load the map into
+    let map_div: Element = document.getElementById(options.divId);
+    if (options.append) {
+      map_div = this.appendMapDiv(map_div);
     }
+    // Initialize the map
+    return await new google.maps.Map(map_div, options.mapOptions);
   }
 
   private appendMapDiv(map_div: Element) {
