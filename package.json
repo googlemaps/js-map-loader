@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/googlemaps/v3-utility-library.git"
+    "url": "git+https://github.com/googlemaps/js-map-loader.git"
   },
   "author": "Alex Muramoto",
   "license": "Apache-2.0",
@@ -22,9 +22,9 @@
     "maps"
   ],
   "bugs": {
-    "url": "https://github.com/googlemaps/v3-utility-library/issues"
+    "url": "https://github.com/googlemaps/js-map-loader/issues"
   },
-  "homepage": "https://github.com/googlemaps/v3-utility-library#readme",
+  "homepage": "https://github.com/googlemaps/js-map-loader#readme",
   "dependencies": {
     "@googlemaps/loader": "^0.0.8"
   },
