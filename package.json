@@ -25,6 +25,10 @@
     "url": "https://github.com/googlemaps/js-map-loader/issues"
   },
   "homepage": "https://github.com/googlemaps/js-map-loader#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://wombat-dressing-room.appspot.com"
+  },
   "dependencies": {
     "@googlemaps/loader": "^0.0.8"
   },
