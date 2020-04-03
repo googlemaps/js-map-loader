@@ -65,7 +65,7 @@ MapLoader
 const MapLoader = new GoogleMap();
 
 // Load the map
-const await google_map = MapLoader.initMap(map_loader_options);
+const google_map = await MapLoader.initMap(map_loader_options);
 ```
 
 ## Documentation
