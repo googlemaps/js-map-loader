@@ -33,30 +33,30 @@ export class GoogleMap {
   async initMap(options: MapLoaderOptions): Promise<google.maps.Map<Element>> {
     await this.loadJsApi(options);
     // Get the div to load the map into
-    let map_div: Element = document.getElementById(options.divId);
+    let mapDiv: Element = document.getElementById(options.divId);
     if (options.append) {
-      map_div = this.appendMapDiv(map_div);
+      mapDiv = this.appendMapDiv(mapDiv);
     }
     // Initialize the map
-    return await new google.maps.Map(map_div, options.mapOptions);
+    return await new google.maps.Map(mapDiv, options.mapOptions);
   }
 
-  private appendMapDiv(map_div: Element) {
-    let append_div_id: string = 'google_map_appended';
-    let append_div: Element = document.createElement('div');
-    append_div.setAttribute('id', append_div_id);
-    map_div.appendChild(append_div);
-    return append_div;
+  private appendMapDiv(mapDiv: Element) {
+    let appendDivId: string = 'google_map_appended';
+    let appendDiv: Element = document.createElement('div');
+    appendDiv.setAttribute('id', appendDivId);
+    mapDiv.appendChild(appendDiv);
+    return appendDiv;
   }
 
   private async loadJsApi(options: MapLoaderOptions): Promise<void> {
     if (!options.apiOptions) {
       options.apiOptions = {};
     }
-    const loader_options: LoaderOptions =
+    const loaderOptions: LoaderOptions =
       Object.assign(options.apiOptions, {apiKey: options.apiKey});
 
-    const loader: Loader = new Loader(loader_options);
+    const loader: Loader = new Loader(loaderOptions);
     // Load the Maps JS API
     return await loader.load();
   }

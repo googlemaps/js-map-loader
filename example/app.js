@@ -48,12 +48,12 @@ const api_options = {
  * Set ID of the div where the map will be loaded,
  * and whether to append to that div.
  */
-const map_loader_options = {
+const mapLoaderOptions = {
   apiKey: GOOGLE_MAPS_API_KEY,
   divId: 'google_map',
   append: true, // Appends to divId. Set to false to init in divId.
-  mapOptions: map_options,
-  apiOptions: api_options
+  mapOptions: mapOptions,
+  apiOptions: apiOptions
 };
 
 // Instantiate map loader
@@ -61,7 +61,7 @@ const MapLoader = new GoogleMap();
 
 // Load the map
 MapLoader
-  .initMap(map_loader_options)
-  .then((google_map) => {
+  .initMap(mapLoaderOptions)
+  .then(googleMap => {
     // returns instance of google.maps.Map
   });
