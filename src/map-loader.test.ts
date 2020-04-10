@@ -20,7 +20,7 @@
 import {GoogleMap} from "./map-loader";
 import {MapLoaderOptions, MapsJSAPIOptions} from "../dist/map-loader";
 
-const GOOGLE_MAPS_API_KEY: string = process.env.GOOGLE_MAPS_API_KEY;
+const GoogleMapsAPIKey: string = process.env.GOOGLE_MAPS_API_KEY;
 const mapOptions: google.maps.MapOptions = {
   center: {
     lat: 47.649196,
@@ -33,7 +33,7 @@ const apiOptions: MapsJSAPIOptions = {
   libraries: ['places']
 };
 const options: MapLoaderOptions = {
-  apiKey: GOOGLE_MAPS_API_KEY,
+  apiKey: GoogleMapsAPIKey,
   divId: 'map',
   mapOptions: mapOptions,
   apiOptions: apiOptions
@@ -41,7 +41,7 @@ const options: MapLoaderOptions = {
 
 const map: GoogleMap = new GoogleMap();
 
-function tileload_callback(): void {
+function tileloadCallback(): void {
   console.log('tiles loaded');
 }
 
@@ -54,49 +54,42 @@ test("initMap initializes instance of google.maps.Map", () => {
   map
     .initMap(options)
     .then((map: google.maps.Map) => {
-      map.addListener('tilesloaded', tileload_callback);
-      expect(tileload_callback).toBeCalled();
+      map.addListener('tilesloaded', tileloadCallback);
+      expect(tileloadCallback).toBeCalled();
     });
 });
 
 test("initMap initializes appends instance of google.maps.Map", () => {
-  const append_options: MapLoaderOptions = options;
-  append_options.append = true;
+  const appendOptions: MapLoaderOptions = options;
+  appendOptions.append = true;
   map
     .initMap(options)
     .then((map: google.maps.Map) => {
-      map.addListener('tilesloaded', tileload_callback);
-      expect(tileload_callback).toBeCalled();
+      map.addListener('tilesloaded', tileloadCallback);
+      expect(tileloadCallback).toBeCalled();
     });
 });
 
 test("initMap initializes instance of google.maps.Map when apiOptions is null", () => {
-  const no_apiOptions = options;
-  delete no_apiOptions.apiOptions;
+  const noApiOptions = options;
+  delete noApiOptions.apiOptions;
   map
-    .initMap(no_apiOptions)
+    .initMap(noApiOptions)
     .then((map: google.maps.Map) => {
-      map.addListener('tilesloaded', tileload_callback);
-      expect(tileload_callback).toBeCalled();
+      map.addListener('tilesloaded', tileloadCallback);
+      expect(tileloadCallback).toBeCalled();
     });
 });
 
 test("initMap fails when invalid div id is provided", () => {
-  const invalid_options: MapLoaderOptions = options;
-  invalid_options.divId = 'invalid';
-  map
-    .initMap(options)
-    .catch((e) => {
-      expect(e).not.toBeNull;
-    });
+  const invalidOptions: MapLoaderOptions = options;
+  invalidOptions.divId = 'invalid';
+  expect(map.initMap(options)).rejects;
 });
 
 test("initMap fails when invalid API key is provided", () => {
-  const invalid_options: MapLoaderOptions = options;
-  invalid_options.apiKey = 'invalid';
-  map
-    .initMap(options)
-    .catch((e) => {
-      expect(e).not.toBeNull;
-    });
+  const invalidOptions: MapLoaderOptions = options;
+  invalidOptions.apiKey = 'invalid';
+
+  expect(map.initMap(options)).rejects;
 });

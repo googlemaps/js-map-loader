@@ -15,21 +15,17 @@
  */
 import {Loader, LoaderOptions} from '@googlemaps/loader';
 
-
 export interface MapLoaderOptions {
-  apiKey: string,
-  divId: string,
-  mapOptions: google.maps.MapOptions,
-  apiOptions?: MapsJSAPIOptions,
-  append?: boolean
+  apiKey: string;
+  divId: string;
+  mapOptions: google.maps.MapOptions;
+  apiOptions?: MapsJSAPIOptions;
+  append?: boolean;
 }
 
-export interface MapsJSAPIOptions extends Omit<LoaderOptions, 'apiKey'> {}
+type MapsJSAPIOptions = Omit<LoaderOptions, 'apiKey'>;
 
 export class GoogleMap {
-  constructor() {
-  }
-
   async initMap(options: MapLoaderOptions): Promise<google.maps.Map<Element>> {
     await this.loadJsApi(options);
     // Get the div to load the map into
@@ -38,12 +34,12 @@ export class GoogleMap {
       mapDiv = this.appendMapDiv(mapDiv);
     }
     // Initialize the map
-    return await new google.maps.Map(mapDiv, options.mapOptions);
+    return new google.maps.Map(mapDiv, options.mapOptions);
   }
 
-  private appendMapDiv(mapDiv: Element) {
-    let appendDivId: string = 'google_map_appended';
-    let appendDiv: Element = document.createElement('div');
+  private appendMapDiv(mapDiv: Element): Element {
+    const appendDivId = 'google_map_appended';
+    const appendDiv: Element = document.createElement('div');
     appendDiv.setAttribute('id', appendDivId);
     mapDiv.appendChild(appendDiv);
     return appendDiv;
