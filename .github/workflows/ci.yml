@@ -6,7 +6,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
-    - run: npm ci
+    - run: npm i
     - run: npm run lint
     - run: npm test
       env:
