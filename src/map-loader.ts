@@ -23,7 +23,7 @@ export interface MapLoaderOptions {
   append?: boolean;
 }
 
-type MapsJSAPIOptions = Omit<LoaderOptions, 'apiKey'>;
+export type MapsJSAPIOptions = Omit<LoaderOptions, 'apiKey'>;
 
 export class GoogleMap {
   async initMap(options: MapLoaderOptions): Promise<google.maps.Map<Element>> {
