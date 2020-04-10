@@ -1,5 +1,5 @@
 ![Test](https://github.com/googlemaps/js-map-loader/workflows/Test/badge.svg)
-[![codecov](https://codecov.io/gh/googlemaps/js-api-loader/branch/master/graph/badge.svg)](https://codecov.io/gh/googlemaps/js-map-loader)
+[![codecov](https://codecov.io/gh/googlemaps/js-map-loader/branch/master/graph/badge.svg)](https://codecov.io/gh/googlemaps/js-map-loader)
 ![TypeScript](https://badgen.net/badge/icon/Typed?icon=typescript&label&labelColor=blue&color=555555)
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
 
