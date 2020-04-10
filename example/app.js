@@ -21,14 +21,14 @@ import { GoogleMap } from 'map-loader';
  * For more information on generating API keys,
  * see https://goo.gle/gmp-generate-api-key-video
  */
-const GOOGLE_MAPS_API_KEY = "YOUR API KEY";
+const googleMapsAPIKey = "YOUR API KEY";
 
 /*
  * Options for how the map should initially render.
  * For more information on available options,
  * see https://goo.gle/maps-js-api-map-options
  */
-const map_options = {
+const mapOptions = {
   center: {
     lat: 47.649196,
     lng: -122.350384
@@ -39,7 +39,7 @@ const map_options = {
 /*
  * Options for loading the Maps JS API.
  */
-const api_options = {
+const apiOptions = {
   version: 'weekly',
   libraries: ['places']
 }
@@ -49,7 +49,7 @@ const api_options = {
  * and whether to append to that div.
  */
 const mapLoaderOptions = {
-  apiKey: GOOGLE_MAPS_API_KEY,
+  apiKey: googleMapsAPIKey,
   divId: 'google_map',
   append: true, // Appends to divId. Set to false to init in divId.
   mapOptions: mapOptions,
@@ -57,10 +57,10 @@ const mapLoaderOptions = {
 };
 
 // Instantiate map loader
-const MapLoader = new GoogleMap();
+const mapLoader = new GoogleMap();
 
 // Load the map
-MapLoader
+mapLoader
   .initMap(mapLoaderOptions)
   .then(googleMap => {
     // returns instance of google.maps.Map
