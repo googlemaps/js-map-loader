@@ -62,7 +62,8 @@ export class GoogleMap {
 
     const loader: Loader = new Loader(loaderOptions);
     // Load the Maps JS API
-    await loader.load();
-    return;
+    const promise = await loader.load();
+    console.log('loaded')
+    return promise;
   }
 }
