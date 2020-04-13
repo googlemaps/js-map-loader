@@ -19,6 +19,7 @@
 
 import {GoogleMap} from "./map-loader";
 import {MapLoaderOptions, MapsJSAPIOptions} from "../dist/map-loader";
+import {Loader} from "@googlemaps/loader";
 
 const GoogleMapsAPIKey: string = process.env.GOOGLE_MAPS_API_KEY;
 const mapOptions: google.maps.MapOptions = {
@@ -50,36 +51,37 @@ beforeEach(() => {
     '<div id="map"></div>';
 });
 
-test("initMap initializes instance of google.maps.Map", () => {
-  map
-    .initMap(options)
-    .then((map: google.maps.Map) => {
-      map.addListener('tilesloaded', tileloadCallback);
-      expect(tileloadCallback).toBeCalled();
-    });
+test("appendMapDiv appends a div with id = google_map_appended", () => {
+  const mapDiv: Element = document.getElementById(options.divId);
+  const appendDiv = (map as any).appendMapDiv(mapDiv);
+  expect(appendDiv.id).toEqual('google_map_appended');
 });
 
-test("initMap initializes appends instance of google.maps.Map", () => {
+test("loadJSAPI resolves", async () => {
+  const mapDiv: Element = document.getElementById(options.divId);
+  const load = await (map as any).loadJSAPI(options);
+  console.log(load)
+  expect.assertions(1)
+  load.then(() => {
+    console.log('ok');
+  })
+});
+
+test("initMap initializes instance of google.maps.Map", async () => {
   const appendOptions: MapLoaderOptions = options;
-  appendOptions.append = true;
-  map
-    .initMap(options)
-    .then((map: google.maps.Map) => {
-      map.addListener('tilesloaded', tileloadCallback);
-      expect(tileloadCallback).toBeCalled();
-    });
+  const googleMap = await map.initMap(options);
+  expect(googleMap).resolves;
+
+  // const googleMapAppeneded = await map.initMap(appendOptions);
+  // expect(googleMapAppeneded).resolves;
 });
 
-test("initMap initializes instance of google.maps.Map when apiOptions is null", () => {
-  const noApiOptions = options;
-  delete noApiOptions.apiOptions;
-  map
-    .initMap(noApiOptions)
-    .then((map: google.maps.Map) => {
-      map.addListener('tilesloaded', tileloadCallback);
-      expect(tileloadCallback).toBeCalled();
-    });
-});
+// test("initMap initializes instance of google.maps.Map when apiOptions is null", () => {
+//   const noApiOptions = options;
+//   delete noApiOptions.apiOptions;
+//   const googleMap = map.initMap(noApiOptions);
+//   expect(googleMap).resolves;
+// });
 
 test("initMap fails when invalid div id is provided", () => {
   const invalidOptions: MapLoaderOptions = options;

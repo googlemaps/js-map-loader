@@ -27,14 +27,22 @@ export type MapsJSAPIOptions = Omit<LoaderOptions, 'apiKey'>;
 
 export class GoogleMap {
   async initMap(options: MapLoaderOptions): Promise<google.maps.Map<Element>> {
-    await this.loadJsApi(options);
+    await this.loadJSAPI(options);
     // Get the div to load the map into
     let mapDiv: Element = document.getElementById(options.divId);
     if (options.append) {
       mapDiv = this.appendMapDiv(mapDiv);
     }
     // Initialize the map
-    return new google.maps.Map(mapDiv, options.mapOptions);
+    const promise: Promise<google.maps.Map<Element>> = new Promise((resolve, reject) => {
+      try {
+        const map = new google.maps.Map(mapDiv, options.mapOptions);
+        resolve(map);
+      } catch (e) {
+        reject(e);
+      }
+    });
+    return promise;
   }
 
   private appendMapDiv(mapDiv: Element): Element {
@@ -45,7 +53,7 @@ export class GoogleMap {
     return appendDiv;
   }
 
-  private async loadJsApi(options: MapLoaderOptions): Promise<void> {
+  private async loadJSAPI(options: MapLoaderOptions): Promise<void> {
     if (!options.apiOptions) {
       options.apiOptions = {};
     }
@@ -54,6 +62,7 @@ export class GoogleMap {
 
     const loader: Loader = new Loader(loaderOptions);
     // Load the Maps JS API
-    return await loader.load();
+    await loader.load();
+    return;
   }
 }
