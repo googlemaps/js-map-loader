@@ -19,8 +19,10 @@
 
 import {GoogleMap} from "./map-loader";
 import {MapLoaderOptions, MapsJSAPIOptions} from "../dist/map-loader";
+import {initialize} from "@googlemaps/jest-mocks";
+jest.mock('@googlemaps/loader');
 
-const GOOGLE_MAPS_API_KEY: string = process.env.GOOGLE_MAPS_API_KEY;
+const GoogleMapsAPIKey: string = process.env.GOOGLE_MAPS_API_KEY;
 const mapOptions: google.maps.MapOptions = {
   center: {
     lat: 47.649196,
@@ -33,7 +35,7 @@ const apiOptions: MapsJSAPIOptions = {
   libraries: ['places']
 };
 const options: MapLoaderOptions = {
-  apiKey: GOOGLE_MAPS_API_KEY,
+  apiKey: GoogleMapsAPIKey,
   divId: 'map',
   mapOptions: mapOptions,
   apiOptions: apiOptions
@@ -41,62 +43,51 @@ const options: MapLoaderOptions = {
 
 const map: GoogleMap = new GoogleMap();
 
-function tileload_callback(): void {
-  console.log('tiles loaded');
-}
-
 beforeEach(() => {
+  initialize();
   document.body.innerHTML =
     '<div id="map"></div>';
 });
 
-test("initMap initializes instance of google.maps.Map", () => {
-  map
-    .initMap(options)
-    .then((map: google.maps.Map) => {
-      map.addListener('tilesloaded', tileload_callback);
-      expect(tileload_callback).toBeCalled();
-    });
+test("loadJSAPI resolves", async () => {
+  const load = await (map as any).loadJSAPI(options);
+  expect(load).toBeUndefined();
 });
 
-test("initMap initializes appends instance of google.maps.Map", () => {
-  const append_options: MapLoaderOptions = options;
-  append_options.append = true;
-  map
-    .initMap(options)
-    .then((map: google.maps.Map) => {
-      map.addListener('tilesloaded', tileload_callback);
-      expect(tileload_callback).toBeCalled();
-    });
+test("initMap initializes instance of google.maps.Map", async () => {
+  const googleMap = await map.initMap(options);
+  expect(typeof googleMap).toEqual('object');
+
+  const appendOptions: MapLoaderOptions = options;
+  appendOptions.append = true;
+  const googleMapAppended = await map.initMap(appendOptions);
+  expect(typeof googleMapAppended).toEqual('object');
 });
 
 test("initMap initializes instance of google.maps.Map when apiOptions is null", () => {
-  const no_apiOptions = options;
-  delete no_apiOptions.apiOptions;
-  map
-    .initMap(no_apiOptions)
-    .then((map: google.maps.Map) => {
-      map.addListener('tilesloaded', tileload_callback);
-      expect(tileload_callback).toBeCalled();
-    });
+  const noApiOptions = options;
+  delete noApiOptions.apiOptions;
+  const googleMap = map.initMap(noApiOptions);
+  expect(googleMap).resolves;
+});
+
+test("appendMapDiv appends a div with id = google_map_appended", () => {
+  const mapDiv: Element = document.getElementById(options.divId);
+  console.log(mapDiv)
+  console.log(options.divId)
+  const appendDiv = (map as any).appendMapDiv(mapDiv);
+  expect(appendDiv.id).toEqual('google_map_appended');
 });
 
 test("initMap fails when invalid div id is provided", () => {
-  const invalid_options: MapLoaderOptions = options;
-  invalid_options.divId = 'invalid';
-  map
-    .initMap(options)
-    .catch((e) => {
-      expect(e).not.toBeNull;
-    });
+  const invalidOptions: MapLoaderOptions = options;
+  invalidOptions.divId = 'invalid';
+  expect(map.initMap(options)).rejects;
 });
 
 test("initMap fails when invalid API key is provided", () => {
-  const invalid_options: MapLoaderOptions = options;
-  invalid_options.apiKey = 'invalid';
-  map
-    .initMap(options)
-    .catch((e) => {
-      expect(e).not.toBeNull;
-    });
+  const invalidOptions: MapLoaderOptions = options;
+  invalidOptions.apiKey = 'invalid';
+
+  expect(map.initMap(options)).rejects;
 });

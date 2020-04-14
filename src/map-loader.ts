@@ -15,41 +15,43 @@
  */
 import {Loader, LoaderOptions} from '@googlemaps/loader';
 
-
 export interface MapLoaderOptions {
-  apiKey: string,
-  divId: string,
-  mapOptions: google.maps.MapOptions,
-  apiOptions?: MapsJSAPIOptions,
-  append?: boolean
+  apiKey: string;
+  divId: string;
+  mapOptions: google.maps.MapOptions;
+  apiOptions?: MapsJSAPIOptions;
+  append?: boolean;
 }
 
-export interface MapsJSAPIOptions extends Omit<LoaderOptions, 'apiKey'> {}
+export type MapsJSAPIOptions = Omit<LoaderOptions, 'apiKey'>;
 
 export class GoogleMap {
-  constructor() {
+  async initMap(options: MapLoaderOptions): Promise<google.maps.Map<Element>> {
+    await this.loadJSAPI(options);
+    const mapDiv: Element = this.getMapDiv(options);
+    // Initialize the map
+    const map = new google.maps.Map(mapDiv, options.mapOptions);
+    return map;
   }
 
-  async initMap(options: MapLoaderOptions): Promise<google.maps.Map<Element>> {
-    await this.loadJsApi(options);
+  private getMapDiv(options: MapLoaderOptions): Element {
     // Get the div to load the map into
     let mapDiv: Element = document.getElementById(options.divId);
     if (options.append) {
       mapDiv = this.appendMapDiv(mapDiv);
     }
-    // Initialize the map
-    return await new google.maps.Map(mapDiv, options.mapOptions);
+    return mapDiv;
   }
 
-  private appendMapDiv(mapDiv: Element) {
-    let appendDivId: string = 'google_map_appended';
-    let appendDiv: Element = document.createElement('div');
+  private appendMapDiv(mapDiv: Element): Element {
+    const appendDivId = 'google_map_appended';
+    const appendDiv: Element = document.createElement('div');
     appendDiv.setAttribute('id', appendDivId);
     mapDiv.appendChild(appendDiv);
     return appendDiv;
   }
 
-  private async loadJsApi(options: MapLoaderOptions): Promise<void> {
+  private async loadJSAPI(options: MapLoaderOptions): Promise<void> {
     if (!options.apiOptions) {
       options.apiOptions = {};
     }
@@ -58,6 +60,6 @@ export class GoogleMap {
 
     const loader: Loader = new Loader(loaderOptions);
     // Load the Maps JS API
-    return await loader.load();
+    return loader.load();
   }
 }
