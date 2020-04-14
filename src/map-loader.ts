@@ -34,7 +34,7 @@ export class GoogleMap {
     return map;
   }
 
-  private getMapDiv(options: MapLoaderOptions) {
+  private getMapDiv(options: MapLoaderOptions): Element {
     // Get the div to load the map into
     let mapDiv: Element = document.getElementById(options.divId);
     if (options.append) {

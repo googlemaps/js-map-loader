@@ -50,9 +50,8 @@ beforeEach(() => {
 });
 
 test("loadJSAPI resolves", async () => {
-  const mapDiv: Element = document.getElementById(options.divId);
   const load = await (map as any).loadJSAPI(options);
-  expect(load).toBeUndefined;
+  expect(load).toBeUndefined();
 });
 
 test("initMap initializes instance of google.maps.Map", async () => {
@@ -61,8 +60,8 @@ test("initMap initializes instance of google.maps.Map", async () => {
 
   const appendOptions: MapLoaderOptions = options;
   appendOptions.append = true;
-  const googleMapAppeneded = await map.initMap(appendOptions);
-  expect(typeof googleMap).toEqual('object');
+  const googleMapAppended = await map.initMap(appendOptions);
+  expect(typeof googleMapAppended).toEqual('object');
 });
 
 test("initMap initializes instance of google.maps.Map when apiOptions is null", () => {
