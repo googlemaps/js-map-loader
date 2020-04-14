@@ -20,7 +20,6 @@
 import {GoogleMap} from "./map-loader";
 import {MapLoaderOptions, MapsJSAPIOptions} from "../dist/map-loader";
 import {initialize} from "@googlemaps/jest-mocks";
-import {Loader} from "@googlemaps/loader";
 jest.mock('@googlemaps/loader');
 
 const GoogleMapsAPIKey: string = process.env.GOOGLE_MAPS_API_KEY;
@@ -73,6 +72,14 @@ test("initMap initializes instance of google.maps.Map when apiOptions is null", 
   expect(googleMap).resolves;
 });
 
+test("appendMapDiv appends a div with id = google_map_appended", () => {
+  const mapDiv: Element = document.getElementById(options.divId);
+  console.log(mapDiv)
+  console.log(options.divId)
+  const appendDiv = (map as any).appendMapDiv(mapDiv);
+  expect(appendDiv.id).toEqual('google_map_appended');
+});
+
 test("initMap fails when invalid div id is provided", () => {
   const invalidOptions: MapLoaderOptions = options;
   invalidOptions.divId = 'invalid';
@@ -84,10 +91,4 @@ test("initMap fails when invalid API key is provided", () => {
   invalidOptions.apiKey = 'invalid';
 
   expect(map.initMap(options)).rejects;
-});
-
-test("appendMapDiv appends a div with id = google_map_appended", () => {
-  const mapDiv: Element = document.getElementById(options.divId);
-  const appendDiv = (map as any).appendMapDiv(mapDiv);
-  expect(appendDiv.id).toEqual('google_map_appended');
 });
