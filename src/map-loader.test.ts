@@ -19,7 +19,9 @@
 
 import {GoogleMap} from "./map-loader";
 import {MapLoaderOptions, MapsJSAPIOptions} from "../dist/map-loader";
+import {initialize} from "@googlemaps/jest-mocks";
 import {Loader} from "@googlemaps/loader";
+jest.mock('@googlemaps/loader');
 
 const GoogleMapsAPIKey: string = process.env.GOOGLE_MAPS_API_KEY;
 const mapOptions: google.maps.MapOptions = {
@@ -42,46 +44,34 @@ const options: MapLoaderOptions = {
 
 const map: GoogleMap = new GoogleMap();
 
-function tileloadCallback(): void {
-  console.log('tiles loaded');
-}
-
 beforeEach(() => {
+  initialize();
   document.body.innerHTML =
     '<div id="map"></div>';
-});
-
-test("appendMapDiv appends a div with id = google_map_appended", () => {
-  const mapDiv: Element = document.getElementById(options.divId);
-  const appendDiv = (map as any).appendMapDiv(mapDiv);
-  expect(appendDiv.id).toEqual('google_map_appended');
 });
 
 test("loadJSAPI resolves", async () => {
   const mapDiv: Element = document.getElementById(options.divId);
   const load = await (map as any).loadJSAPI(options);
-  console.log(load)
-  expect.assertions(1)
-  load.then(() => {
-    console.log('ok');
-  })
+  expect(load).toBeUndefined;
 });
 
 test("initMap initializes instance of google.maps.Map", async () => {
-  const appendOptions: MapLoaderOptions = options;
   const googleMap = await map.initMap(options);
-  expect(googleMap).resolves;
+  expect(typeof googleMap).toEqual('object');
 
-  // const googleMapAppeneded = await map.initMap(appendOptions);
-  // expect(googleMapAppeneded).resolves;
+  const appendOptions: MapLoaderOptions = options;
+  appendOptions.append = true;
+  const googleMapAppeneded = await map.initMap(appendOptions);
+  expect(typeof googleMap).toEqual('object');
 });
 
-// test("initMap initializes instance of google.maps.Map when apiOptions is null", () => {
-//   const noApiOptions = options;
-//   delete noApiOptions.apiOptions;
-//   const googleMap = map.initMap(noApiOptions);
-//   expect(googleMap).resolves;
-// });
+test("initMap initializes instance of google.maps.Map when apiOptions is null", () => {
+  const noApiOptions = options;
+  delete noApiOptions.apiOptions;
+  const googleMap = map.initMap(noApiOptions);
+  expect(googleMap).resolves;
+});
 
 test("initMap fails when invalid div id is provided", () => {
   const invalidOptions: MapLoaderOptions = options;
@@ -94,4 +84,10 @@ test("initMap fails when invalid API key is provided", () => {
   invalidOptions.apiKey = 'invalid';
 
   expect(map.initMap(options)).rejects;
+});
+
+test("appendMapDiv appends a div with id = google_map_appended", () => {
+  const mapDiv: Element = document.getElementById(options.divId);
+  const appendDiv = (map as any).appendMapDiv(mapDiv);
+  expect(appendDiv.id).toEqual('google_map_appended');
 });
