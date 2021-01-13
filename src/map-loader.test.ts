@@ -20,7 +20,7 @@
 import {GoogleMap} from "./map-loader";
 import {MapLoaderOptions, MapsJSAPIOptions} from "../dist/map-loader";
 import {initialize} from "@googlemaps/jest-mocks";
-jest.mock('@googlemaps/loader');
+jest.mock('@googlemaps/js-api-loader');
 
 const GoogleMapsAPIKey: string = process.env.GOOGLE_MAPS_API_KEY;
 const mapOptions: google.maps.MapOptions = {

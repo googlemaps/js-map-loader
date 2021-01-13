@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {Loader, LoaderOptions} from '@googlemaps/loader';
+import {Loader, LoaderOptions} from '@googlemaps/js-api-loader';
 
 export interface MapLoaderOptions {
   apiKey: string;

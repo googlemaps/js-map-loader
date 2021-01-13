@@ -9,7 +9,9 @@
     "lib": [
       "DOM",
       "ESNext"
-    ]
+    ],
+    "target": "ES6",
+    "moduleResolution": "node"
   },
   "include": [
     "src/**/*"
