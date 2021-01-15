@@ -4,7 +4,7 @@
   "description": "An example app for @googlemaps/map-loader usage",
   "main": "app.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --hot --open"
+    "start": "webpack-dev-server"
   },
   "author": "Google Inc.",
   "contributors": [
@@ -23,9 +23,9 @@
     "access": "public"
   },
   "dependencies": {
-    "map-loader": "@googlemaps/map-loader",
+    "map-loader": "../",
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.11.1"
   }
 }

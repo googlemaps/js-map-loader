@@ -24,7 +24,9 @@ const CONFIG = {
     app: './app.js'
   },
   devServer: {
-    index: 'index.html'
+    index: 'index.html',
+    hot: true,
+    open: true
   },
   plugins: [
     // Read google maps token from environment variable

@@ -20,9 +20,9 @@
 import {GoogleMap} from "./map-loader";
 import {MapLoaderOptions, MapsJSAPIOptions} from "../dist/map-loader";
 import {initialize} from "@googlemaps/jest-mocks";
-jest.mock('@googlemaps/loader');
+jest.mock('@googlemaps/js-api-loader');
 
-const GoogleMapsAPIKey: string = process.env.GOOGLE_MAPS_API_KEY;
+const GOOGLE_MAPS_API_KEY: string = process.env.GOOGLE_MAPS_API_KEY;
 const mapOptions: google.maps.MapOptions = {
   center: {
     lat: 47.649196,
@@ -35,7 +35,7 @@ const apiOptions: MapsJSAPIOptions = {
   libraries: ['places']
 };
 const options: MapLoaderOptions = {
-  apiKey: GoogleMapsAPIKey,
+  apiKey: GOOGLE_MAPS_API_KEY,
   divId: 'map',
   mapOptions: mapOptions,
   apiOptions: apiOptions
@@ -50,7 +50,7 @@ beforeEach(() => {
 });
 
 test("loadJSAPI resolves", async () => {
-  const load = await (map as any).loadJSAPI(options);
+  const load = await map["_loadJSAPI"](options);
   expect(load).toBeUndefined();
 });
 
@@ -75,7 +75,7 @@ test("appendMapDiv appends a div with id = google_map_appended", () => {
   const mapDiv: Element = document.getElementById(options.divId);
   console.log(mapDiv)
   console.log(options.divId)
-  const appendDiv = (map as any).appendMapDiv(mapDiv);
+  const appendDiv: Element = map["_appendMapDiv"](mapDiv);
   expect(appendDiv.id).toEqual('google_map_appended');
 });
 
